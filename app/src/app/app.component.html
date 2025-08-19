@@ -1,5 +1,7 @@
 <div style="width: 60%; margin: auto;">
   <h1>My first deployed web app</h1>
   <p>This application is hosted in azure web app, and it will call an azure function</p>
-  <app-card title="The card title" content="Some content goes mat-card-header" ></app-card>
+  @for (card of cards; track card.id) {
+    <app-card [title]="card.title" [content]="card.content" ></app-card>
+  }
 </div>
