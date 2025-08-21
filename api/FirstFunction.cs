@@ -33,7 +33,7 @@ public class FirstFunction
 
     public IActionResult Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req,
-        [BlobInput("test/cards.json", Connection = "AzureWebJobsStorage")] Card[] cards)
+        [BlobInput("test/cards.json", Connection = "BlobConnectionString")] Card[] cards)
     {
         _logger.LogInformation("C# HTTP trigger function processed a request.");
         var random = new Random().Next(1, cards.Length + 1);
