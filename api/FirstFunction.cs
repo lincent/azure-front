@@ -30,11 +30,14 @@ public class FirstFunction
     }
 
     [Function("cards")]
-    public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req)
+
+    public IActionResult Run(
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req,
+        [BlobInput("test/cards.json", Connection = "AzureWebJobsStorage")] Card[] cards)
     {
         _logger.LogInformation("C# HTTP trigger function processed a request.");
-        var random = new Random().Next(1, _cards.Length+1);
+        var random = new Random().Next(1, cards.Length + 1);
         _logger.LogInformation("Returning cards between 1 and {random}", random);
-        return new OkObjectResult(_cards[..random]);
+        return new OkObjectResult(cards[..random]);
     }
 }
