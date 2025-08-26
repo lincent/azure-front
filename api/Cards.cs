@@ -21,14 +21,12 @@ public class Cards
     }
 
     [Function("cards")]
-    public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
+    public IActionResult Run(
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req,
+        [BlobInput("test/cards.json", Connection = "BlobConnectionString")] Card[] cards
+    )
     {
         _logger.LogInformation("C# HTTP trigger function processed a request.");
-        return new OkObjectResult(
-            new Card[] {
-                new() { Id = 1, Content = "Content for card one", Title = "1 Title" },
-                new() { Id = 2, Content = "The second card's content", Title = "2 Title" },
-                new() { Id = 3, Content = "threeeeeeeeeeeee", Title = "3 Title" }
-            });
+        return new OkObjectResult(cards);
     }
 }
