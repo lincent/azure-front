@@ -11,10 +11,13 @@ import { CardFormComponent } from './card-form/card-form.component';
 })
 export class AppComponent implements OnInit {
   cards: any = []
-  
   httpClient = inject(HttpClient)
 
   ngOnInit(): void {
+    this.refreshCards()
+  }
+
+  refreshCards(): void {
     this.httpClient.get('/api/cards').subscribe(resp => this.cards = resp);
   }
 }

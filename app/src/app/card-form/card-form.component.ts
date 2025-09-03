@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,6 +15,9 @@ export class CardFormComponent {
   submitted = signal(false);
   success = signal(false);
   error = signal('');
+
+  cardCreated = output();
+
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.cardForm = this.fb.group({
@@ -35,6 +38,7 @@ export class CardFormComponent {
         this.success.set(true);
         this.cardForm.reset();
         this.submitted.set(false);
+        this.cardCreated.emit();
       },
       error: () => {
         this.error.set('Failed to submit card.');
