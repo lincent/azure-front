@@ -30,7 +30,7 @@ export class CardFormComponent {
     if (this.cardForm.invalid) {
       return;
     }
-    this.http.post('/api/cards', this.cardForm.value).subscribe({
+    this.http.post('/api/card', this.cardForm.value).subscribe({
       next: () => {
         this.success.set(true);
         this.cardForm.reset();
