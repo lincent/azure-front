@@ -1,0 +1,23 @@
+.error { 
+    color: red; 
+    margin-top: 4px; 
+}
+.success { 
+    color: green; 
+    margin-top: 4px; 
+}
+form { 
+    max-width: 400px; 
+    margin: 0 auto; 
+    display: flex; 
+    flex-direction: column; 
+}
+.example-full-width { 
+    width: 100%; 
+    padding: 8px; 
+    box-sizing: border-box; 
+}
+button { 
+    align-self: flex-end; 
+    padding: 8px 16px; 
+}

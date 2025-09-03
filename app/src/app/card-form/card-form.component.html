@@ -1,0 +1,30 @@
+<form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+  <div>
+  <mat-form-field class="example-full-width">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title">
+    @if(submitted() && cardForm.controls['title'].invalid) {
+        <mat-error>Title is required</mat-error>
+    }
+  </mat-form-field>
+  </div>
+  <div>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Content</mat-label>
+    <textarea matInput formControlName="content"></textarea>
+    @if (submitted() && cardForm.controls['content'].invalid) {
+        <mat-error>
+            Content is required.
+        </mat-error>
+    }
+  </mat-form-field>
+  </div>
+  <button type="submit">Submit</button>
+  @if (success()) {
+      <div class="success">Card submitted successfully!</div>
+  }
+  @if (error()) {
+      <div class="error">{{ error() }}</div>
+  }
+</form>
